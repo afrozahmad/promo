@@ -78,11 +78,11 @@ export class PromoService {
     // // facts.cart = updatedCart;
     // const result = await this.engine.run({ facts });
     result.results.forEach(ruleResult => {
-      const { level, type, params } = ruleResult.event;
+      const {  type, params } = ruleResult.event;
 
-      if (type === 'orderLevelDiscount') {
+      if (params['level'] === 'orderLevelDiscount') {
         this.applyOrderLevelDiscount(updatedCart, params);
-      } else if (type === 'itemLevelDiscount') {
+      } else if (params['level'] === 'itemLevelDiscount') {
         this.applyItemLevelDiscount3(updatedCart, ruleResult);
       }
     });

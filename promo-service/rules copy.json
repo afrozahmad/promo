@@ -60,6 +60,7 @@
     "event": {
       "type": "SingleSamplePromos",
       "params": {
+        "level":"itemLevelDiscount",
         "action": "gwp",
         "target": "item4",
         "value": 1     
