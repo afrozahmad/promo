@@ -1,0 +1,25 @@
+[
+  {
+  "conditions": {
+    "all": [
+      {
+        "fact": "cart",
+        "path": "$.items[?(@.total > 50)].category",
+        "operator": "in",
+        "value": ["jeans", "shoes"]
+        
+      }
+
+    ]
+  },
+  "event": {
+    "type": "itemLevelDiscount",
+    "params": {
+      "action": "percentOff",
+      "target": "item.total",
+      "value": 15,
+      "includeList": ["jeans", "shoes"]
+    }
+  }
+}
+]

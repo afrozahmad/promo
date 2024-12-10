@@ -1,0 +1,136 @@
+[
+  {
+    "conditions": {
+      "all": [
+        {
+          "fact": "cart",
+          "path": "$.items[?(@.id ==='item3')]",
+          "operator": ">=",
+          "value": 2 
+
+        }
+  
+      ]
+    },
+    "event": {
+      "type": "itemLevelDiscount",
+      "params": {
+        "action": "percentOff_bogo",
+        "target": "item.total",
+        "value": 5     
+      }
+    }
+  },
+  {
+    "conditions": {
+      "all": [
+        {
+          "fact": "cart",
+          "path": "$.items[?(@.id ==='item3')]",
+          "operator": ">=",
+          "value": 3 
+
+        }
+  
+      ]
+    },
+    "event": {
+      "type": "itemLevelDiscount",
+      "params": {
+        "action": "dollarOff",
+        "target": "item.total",
+        "value": 5     
+      }
+    }
+  },
+  {
+    "conditions": {
+      "all": [
+        {
+          "fact": "cart",
+          "path": "$.items[?(@.brand ==='brand1')]",
+          "operator": "greaterThanInclusive",
+          "value":0
+        }
+  
+      ]
+    },
+    "event": {
+      "type": "itemLevelDiscount",
+      "params": {
+        "action": "dollarOff",
+        "target": "item.total",
+        "value": 5     
+      }
+    }
+  },
+  {
+  "conditions": {
+    "all": [
+      {
+        "fact": "cart",
+        "path": "$.items[?(@.total > 50 && @.brand ==='brand2')]",
+        "operator": "in",
+        "value": {
+          "attribute": "category",
+          "values": ["jeans", "shoes", "accessories"]
+        }
+        
+      }
+
+    ]
+  },
+  "event": {
+    "type": "itemLevelDiscount",
+    "params": {
+      "action": "percentOff",
+      "target": "item.total",
+      "value": 15     
+    }
+  }
+},
+{
+  "conditions": {
+    "all": [
+      {
+        "fact": "cart",
+        "path": "$.items[?(@.total < 50 && @.brand ==='brand1')]",
+        "operator": "in",
+        "value": {
+          "attribute": "category",
+          "values": ["jeans", "shoes", "accessories"]
+        }
+        
+      }
+
+    ]
+  },
+  "event": {
+    "type": "itemLevelDiscount",
+    "params": {
+      "action": "percentOff",
+      "target": "item.total",
+      "value": 15
+    }
+  }
+},
+{
+"conditions": {
+      "all": [
+        {
+          "fact": "cart",
+          "path": "$.total",
+          "operator": "greaterThanInclusive",
+          "value": 100
+        }
+      ]
+    },
+    "event": {
+      "type": "orderLevelDiscount",
+      "params": {
+        "action": "freeShipping",
+        "target": "cart.shippingCost"
+      }
+    }
+  }
+]

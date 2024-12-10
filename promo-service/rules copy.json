@@ -1,0 +1,69 @@
+[
+  {
+    "conditions": {
+      "all": [
+        {
+          "fact": "cart",
+          "path": "$.items[?(@.id ==='item3')]",
+          "operator": ">=",
+          "value": 2 
+
+        }
+  
+      ]
+    },
+    "event": {
+      "type": "exclusivePromos",
+      "params": {
+        "level":"itemLevelDiscount",
+        "action": "bogN_percentOff",
+        "target": "item.total",
+        "value": 5     
+      }
+    }
+  },
+  
+  {
+    "conditions": {
+      "all": [
+        {
+          "fact": "cart",
+          "path": "$.items[?(@.brand ==='brand2')]",
+          "operator": ">=",
+          "value":1
+        }
+  
+      ]
+    
+    },
+    "event": {
+      "type": "exclusivePromos",
+      "params": {
+        "level":"itemLevelDiscount",
+        "action": "dollarOff",
+        "target": "item.total",
+        "value": 5     
+      }
+    }
+  },
+  {
+  "conditions": {
+      "all": [
+        {
+          "fact": "cart",
+          "path": "$.total",
+          "operator": "greaterThanInclusive",
+          "value": 100
+        }
+      ]
+    },
+    "event": {
+      "type": "SingleSamplePromos",
+      "params": {
+        "action": "gwp",
+        "target": "item4",
+        "value": 1     
+      }
+    }
+  }
+]
